@@ -1,4 +1,5 @@
 const { AuthenticationError } = require("apollo-server");
+const { subscribe } = require("graphql");
 const Post = require("../../models/Post");
 const checkAuth = require("../../util/check-auth");
 
@@ -29,6 +30,10 @@ module.exports = {
     async createPost(_, { body }, context) {
       const user = checkAuth(context);
 
+      if (body.trim() === "") {
+        throw new Error("Post body must not be empty");
+      }
+
       const newPost = new Post({
         body,
         user: user.id,
@@ -37,6 +42,13 @@ module.exports = {
       });
 
       const post = await newPost.save();
+
+      // ubscription
+
+      // context.pubsub.publish("NEW_POST", {
+      //   newPost: post,
+      // });
+
       return post;
     },
     async deletePost(_, { postId }, context) {
@@ -55,4 +67,12 @@ module.exports = {
       }
     },
   },
+
+  // may be later baby
+
+  // Subscription: {
+  //   newPost: {
+  //     subscribe: (_, __, { pubsub }) => pubsub.asyncIterator("NEW_POST"),
+  //   },
+  // },
 };
