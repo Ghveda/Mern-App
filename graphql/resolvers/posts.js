@@ -43,7 +43,7 @@ module.exports = {
 
       const post = await newPost.save();
 
-      // ubscription
+      // subscription
 
       // context.pubsub.publish("NEW_POST", {
       //   newPost: post,

@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "serve": "node index",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon index"
   },
@@ -14,7 +15,9 @@
     "apollo-server": "^3.6.1",
     "bcryptjs": "^2.4.3",
     "graphql": "^16.2.0",
+    "graphql-tag": "^2.12.6",
     "jsonwebtoken": "^8.5.1",
+    "jwt-decode": "^3.1.2",
     "mongoose": "^6.1.5",
     "nodemon": "^2.0.15"
   }
